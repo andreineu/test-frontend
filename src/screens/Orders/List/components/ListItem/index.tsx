@@ -4,7 +4,6 @@ import { OrdersListItem } from "../../types";
 import { observer } from "mobx-react-lite";
 import moment from "moment";
 import "moment/locale/ru";
-import Tag from "components/Tag";
 import OrderStatus from "components/OrderStatus";
 import DeliveryType from "components/DeliveryType";
 import { Link } from "react-router-dom";

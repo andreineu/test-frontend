@@ -16,33 +16,26 @@ export class GlobalState {
     deliveryTypes: CrmType[];
     productStatuses: CrmType[];
   } = {
-    orderStatuses: [],
-    deliveryTypes: [],
-    productStatuses: [],
-  };
+      orderStatuses: [],
+      deliveryTypes: [],
+      productStatuses: [],
+    };
 
   status: {
     orderStatuses: Status;
     deliveryTypes: Status;
     productStatuses: Status;
   } = {
-    orderStatuses: null,
-    deliveryTypes: null,
-    productStatuses: null,
-  };
+      orderStatuses: null,
+      deliveryTypes: null,
+      productStatuses: null,
+    };
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  get orderStatuses() {
-    if (this.status.orderStatuses === null) {
-    }
-    return this.data.orderStatuses;
-  }
-
   setOrderStatuses(statuses: CrmType[]) {
-    console.log(statuses);
     this.data.orderStatuses = statuses;
     this.status.orderStatuses = true;
   }
@@ -57,17 +50,48 @@ export class GlobalState {
     this.status.deliveryTypes = true;
   }
 
+  get orderStatuses() {
+    if (this.status.orderStatuses === null) {
+      client
+        .query(ORDER_STATUSES_QUERY)
+        .toPromise()
+        .then((res) => {
+          const statuses = res.data.orderStatuses
+          this.setOrderStatuses(statuses)
+        })
+
+    }
+    return this.data.orderStatuses;
+  }
+
   get productStatuses() {
+
     if (this.status.productStatuses === null) {
+      client
+        .query(PRODUCT_STATUSES_QUERY)
+        .toPromise()
+        .then((res) => {
+          const statuses = res.data.productStatuses
+          this.setProductStatuses(statuses)
+        })
     }
     return this.data.productStatuses;
   }
 
   get deliveryTypes() {
+
     if (this.status.deliveryTypes === null) {
+      client
+        .query(DELIVERY_TYPES_QUERY)
+        .toPromise()
+        .then((res) => {
+          const statuses = res.data.deliveryTypes
+          this.setDeliveryTypes(statuses)
+        })
     }
     return this.data.deliveryTypes;
   }
+
 }
 
 export const GlobalStateContext = createContext(new GlobalState());

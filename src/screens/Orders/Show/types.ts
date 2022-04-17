@@ -26,6 +26,7 @@ export interface RetailItemInfo {
 
 export interface SingleOrderItem {
   id: number;
+  status: string;
   quantity: number;
   properties: {
     [key: string]: {

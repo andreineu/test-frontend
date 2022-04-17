@@ -1,4 +1,4 @@
-import { createClient, fetchExchange } from "urql";
+import { createClient, fetchExchange } from "@urql/core";
 console.log(process.env.API_URL);
 
 const client = createClient({

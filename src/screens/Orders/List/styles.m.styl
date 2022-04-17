@@ -2,3 +2,40 @@
 
 .screen
   background white
+  margin-left: 84px
+  padding:28px
+  span 
+    display block
+    text-align: center
+  h1
+    text-align: center
+
+  
+.screenWrapper
+  min-height: 100vh
+  padding 28px
+
+.table
+  padding 28px 28px 0
+
+.head
+  width 100%
+
+.row
+  display grid
+  padding 0 14px
+  grid-template-columns: repeat(5, 1fr)
+
+.body
+  display grid
+  padding 28px 14px 
+  gap 28px
+  overflow-y scroll
+  max-height 100vh
+  coolScrollbar()
+
+.pagination
+  width 200px
+  display flex
+  justify-content space-between
+  margin 28px auto
