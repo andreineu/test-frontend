@@ -1,4 +1,35 @@
 @import '../../../common.styl'
 
-.screen
-  background white
+.title 
+  text-align center
+
+.table
+  border 1px solid $border-primary
+  border-radius $border-radius
+  font-size 0.875rem
+
+.head
+  width 100%
+
+.row
+  display grid
+  padding 14px 
+  border-bottom 1px solid $border-primary
+  background $background
+  
+  grid-template-columns: repeat(5, 1fr)
+  grid-template-columns: 1fr repeat(4, 2fr)
+
+.cell
+  text-align center
+
+.body
+  display grid
+  padding 28px 14px 
+  gap 28px
+
+.pagination
+  width 200px
+  display flex
+  justify-content space-between
+  margin 28px auto

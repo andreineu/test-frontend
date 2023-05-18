@@ -1,18 +1,26 @@
 @import '../../../../../common.styl'
 
-.row
+.item
   min-height 64px
+  // padding 28px 14px 
+  padding 28px 14px
+  display grid
+  // grid-template-columns: repeat(5, 1fr)
+  grid-template-columns: 1fr repeat(4, 2fr)
+  border-bottom 1px solid $border-primary
 
   div
     display flex
     align-items center
+    justify-content: center
+    
 
     div
       width 80%
 
     &:last-child div
-      width 100%
+      // width 100%
 
 .orderNumber
   font-weight 500
-  color $primary-dark
+  text-decoration: none
