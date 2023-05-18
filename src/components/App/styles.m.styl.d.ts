@@ -1,6 +1,7 @@
 declare namespace StylesMStylNamespace {
   export interface IStylesMStyl {
     app: string;
+    content: string;
   }
 }
 

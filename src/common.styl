@@ -7,12 +7,15 @@ $green = #7CE7AC
 $red = #FF808B
 $purple = #9698D6
 
+$border-primary = #bdbdbd
+$border-radius = 4px
 
 $background = #F6F6F6
 $background-light = #F5F5FA
 
 coolScrollbar()
   &::-webkit-scrollbar
+    
     width 6px
 
   &::-webkit-scrollbar-track
@@ -22,3 +25,10 @@ coolScrollbar()
     background-color alpha($primary-grey, 80%)
     border-radius 20px
     border 3px solid transparent
+
+body
+  overflow-y overlay
+  margin 0
+  coolScrollbar()
+
+

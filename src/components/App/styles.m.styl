@@ -1,9 +1,16 @@
 @import '../../common.styl'
 
 .app
-  position absolute
-  top 0
-  left 0
-  width 100vw
-  height 100vh
+  min-height 100vh
   background $background-light
+  display grid
+  grid-template-areas "sidebar content "\
+                      "sidebar content "
+
+.content
+  grid-area content
+  min-height 100vh
+  background white
+  padding 28px
+  width 800px
+  

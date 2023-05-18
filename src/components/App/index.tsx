@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./styles.m.styl";
 import Navbar from "../Navbar";
-import OrdersList from "../../screens/Orders/List";
+import OrdersList from "~/screens/Orders/List";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GlobalStateProvider, GlobalState } from "~/screens/globalState";
 import OrdersShow from "~/screens/Orders/Show";
+import Sidebar from "../Sidebar";
 
 function Index(): JSX.Element {
   const [globalState] = React.useState(new GlobalState());
@@ -14,15 +15,19 @@ function Index(): JSX.Element {
     <GlobalStateProvider value={globalState}>
       <Router>
         <div className={styles.app}>
-          <Navbar />
-          <Switch>
-            <Route path="/orders/:id">
-              <OrdersShow />
-            </Route>
-            <Route path="/orders">
-              <OrdersList />
-            </Route>
-          </Switch>
+          <Sidebar>
+            <Navbar />
+          </Sidebar>
+          <div className={styles.content} data-testid="test">
+            <Switch>
+              <Route path="/orders/:id">
+                <OrdersShow />
+              </Route>
+              <Route path="/orders">
+                <OrdersList />
+              </Route>
+            </Switch>
+          </div>
         </div>
       </Router>
     </GlobalStateProvider>

@@ -3,7 +3,7 @@ import client from "api/gql";
 import {
   DELIVERY_TYPES_QUERY,
   ORDER_STATUSES_QUERY,
-  PRODUCT_STATUSES_QUERY,
+  PRODUCT_STATUSES_QUERY
 } from "~/screens/queries";
 import { CrmType } from "~/api/types/crmType";
 import { makeAutoObservable } from "mobx";
@@ -18,7 +18,7 @@ export class GlobalState {
   } = {
     orderStatuses: [],
     deliveryTypes: [],
-    productStatuses: [],
+    productStatuses: []
   };
 
   status: {
@@ -28,7 +28,7 @@ export class GlobalState {
   } = {
     orderStatuses: null,
     deliveryTypes: null,
-    productStatuses: null,
+    productStatuses: null
   };
 
   constructor() {
@@ -37,6 +37,7 @@ export class GlobalState {
 
   get orderStatuses() {
     if (this.status.orderStatuses === null) {
+      this.loadOrderStatuses();
     }
     return this.data.orderStatuses;
   }
@@ -59,14 +60,35 @@ export class GlobalState {
 
   get productStatuses() {
     if (this.status.productStatuses === null) {
+      this.loadProductStatuses();
     }
     return this.data.productStatuses;
   }
 
   get deliveryTypes() {
     if (this.status.deliveryTypes === null) {
+      this.loadDeliveryTypes();
     }
+
     return this.data.deliveryTypes;
+  }
+
+  private async loadOrderStatuses() {
+    const { data } = await client.query(ORDER_STATUSES_QUERY).toPromise();
+
+    this.setOrderStatuses(data.orderStatuses);
+  }
+
+  private async loadProductStatuses() {
+    const { data } = await client.query(PRODUCT_STATUSES_QUERY).toPromise();
+
+    this.setProductStatuses(data.productStatuses);
+  }
+
+  private async loadDeliveryTypes() {
+    const { data } = await client.query(DELIVERY_TYPES_QUERY).toPromise();
+
+    this.setDeliveryTypes(data.deliveryTypes);
   }
 }
 
